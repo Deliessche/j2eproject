@@ -3,6 +3,8 @@ package com.al2.ddk.model;
 public class Movie {
 	
 	/***/
+	private int id;
+	/***/
 	private String name;
 	/***/
 	private int duration;
@@ -14,6 +16,18 @@ public class Movie {
 	private String description;
 	
 	
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
 	/**
 	 * @return the name
 	 */
