@@ -1,17 +1,19 @@
 package com.al2.ddk.model;
 
-import java.util.ArrayList;
-
 public class Movie {
 	
 	/***/
 	private String name;
 	/***/
-	private String date;
+	private int duration;
+	/***/
+	private int year;
 	/***/
 	private String creator;
 	/***/
 	private String description;
+	
+	
 	/**
 	 * @return the name
 	 */
@@ -25,16 +27,28 @@ public class Movie {
 		this.name = name;
 	}
 	/**
-	 * @return the date
+	 * @return the duration
 	 */
-	public String getDate() {
-		return date;
+	public int getDuration() {
+		return duration;
 	}
 	/**
-	 * @param date the date to set
+	 * @param duration the duration to set
 	 */
-	public void setDate(String date) {
-		this.date = date;
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+	/**
+	 * @return the year
+	 */
+	public int getYear() {
+		return year;
+	}
+	/**
+	 * @param year the year to set
+	 */
+	public void setYear(int year) {
+		this.year = year;
 	}
 	/**
 	 * @return the creator
