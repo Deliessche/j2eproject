@@ -27,16 +27,13 @@ public class JeeApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		List<Movie> findAll = movieService.findAll();
+		List<Movie> allMovies = movieService.getAllMovies();
+		Movie movie = movieService.getMovie(2);
 		
-		findAll.stream()
-		.forEach(m -> System.out.println("nom: " + m.getNameM()));
-//		System.out.println("> getAllMovies()");
-//        List<Movie> allMovies = movieService.getAllMovies();
-//        System.out.println("< getAllMovies()");
-//        for(Movie movie : allMovies) {
-//        	System.out.println("movie 1 : "+movie.getName());
-//        }
+		System.out.println("> all movies :");
+		allMovies.stream()
+		.forEach(m -> System.out.println("film "+m.getIdM()+" : " + m.getNameM()));
+		System.out.println("> film 2 :"+movie.getNameM());
 	}
 
 }
