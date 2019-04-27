@@ -1,14 +1,18 @@
 package com.al2.ddk.jee.domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Movie {
-	
+
 	/***/
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,7 +28,10 @@ public class Movie {
 	private String creatorM;
 	/***/
 	private String descriptionM;
-	
+	/***/
+	@OneToMany(mappedBy="movie")
+	private List<Copy> copies;
+
 	/***/
 	public Movie() {}
 
@@ -110,5 +117,19 @@ public class Movie {
 	 */
 	public void setDescriptionM(String descriptionM) {
 		this.descriptionM = descriptionM;
+	}
+
+	/**
+	 * @return the copies
+	 */
+	public List<Copy> getCopies() {
+		return copies;
+	}
+
+	/**
+	 * @param copies the copies to set
+	 */
+	public void setCopies(List<Copy> copies) {
+		this.copies = copies;
 	}
 }

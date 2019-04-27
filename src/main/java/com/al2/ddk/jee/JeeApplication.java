@@ -33,7 +33,7 @@ public class JeeApplication implements CommandLineRunner {
 		System.out.println("> all movies :");
 		allMovies.stream()
 		.forEach(m -> System.out.println("film "+m.getIdM()+" : " + m.getNameM()));
-		System.out.println("> film 2 :"+movie.getNameM());
+		System.out.println("> film 2 :"+movie.getNameM()+" "+movie.getYearM());
 	}
 
 }
