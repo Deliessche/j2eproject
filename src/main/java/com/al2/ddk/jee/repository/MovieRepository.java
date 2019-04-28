@@ -19,9 +19,9 @@ public interface MovieRepository extends JpaRepository<Movie, Integer>{
 	List<Movie> findAll();
 	
 	/**
-	 * renvoie un film en fonction de son id
+	 * renvoie un film en fonction de son identifiant
 	 * @param id
-	 * @return
+	 * @return un objet Movie
 	 */
 	@Query("SELECT m FROM Movie m WHERE m.id = :id")
 	Movie findById(@Param("id") int id);
