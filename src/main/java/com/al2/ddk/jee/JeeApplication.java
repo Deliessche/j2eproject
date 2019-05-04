@@ -51,7 +51,11 @@ public class JeeApplication implements CommandLineRunner {
 		.forEach(u -> System.out.println("user "+u.getIdU()+" "+u.getFirstNameU()+" "+u.getLastNameU()));
 		/** GET USER **/
 		User user = userService.getUser(3);
-		System.out.println("> user 3 :"+user.getFirstNameU()+" "+user.getLastNameU());
+		System.out.println("> user 3 : "+user.getFirstNameU()+" "+user.getLastNameU());
+		/** SET PASSWORD **/
+		userService.setPassword(user.getIdU(), "newtest4");
+		/** CREATE USER **/
+		userService.createUser("Neaddl", "KddEMISSI", "neadddl.k@hotmail.fr", "ddddddddd");
 	}
 
 }

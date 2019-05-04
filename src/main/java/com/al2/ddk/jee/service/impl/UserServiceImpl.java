@@ -35,8 +35,18 @@ public class UserServiceImpl implements UserService {
 	/******/
 	@Override
 	public void setPassword(int id, String password) {
-		
 		User user = getUser(id);
+		user.setPasswordU(password);
+		userRepository.save(user);
+	}
+
+	/******/
+	@Override
+	public void createUser(String firstName, String lastName, String email, String password) {
+		User user = new User();
+		user.setFirstNameU(firstName);
+		user.setLastNameU(lastName);
+		user.setEmailU(email);
 		user.setPasswordU(password);
 		userRepository.save(user);
 	}

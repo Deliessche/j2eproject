@@ -28,4 +28,13 @@ public interface UserService {
 	 * @param password
 	 */
 	void setPassword(int id, String password);
+	
+	/**
+	 * créer un nouvel utilisateur
+	 * @param firstName
+	 * @param lastName
+	 * @param email
+	 * @param password
+	 */
+	void createUser(String firstName, String lastName, String email,  String password);
 }
