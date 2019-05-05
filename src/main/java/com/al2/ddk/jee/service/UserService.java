@@ -23,6 +23,21 @@ public interface UserService {
 	User getUser(int id);
 	
 	/**
+	 * retourne un utilisateur en fonction de son email
+	 * @param email
+	 * @return un User
+	 */
+	User getUser(String email);
+	
+	/**
+	 * permet de savoir si les identifiants de l'utilisateur correspondent ou non
+	 * @param email
+	 * @param password
+	 * @return true si les identifants de connexions sont correct, sinon false
+	 */
+	boolean isValidAccount(String email, String password);
+	
+	/**
 	 * modifie le mot de passe d'un utilisateur en fonction de son identifiant
 	 * @param id
 	 * @param password

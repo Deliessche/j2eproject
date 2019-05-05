@@ -18,12 +18,16 @@ public class User {
 	@Column(name = "idU")
 	private Integer idU;
 	/***/
+	@Column(name = "first_nameU")
 	private String firstNameU;
 	/***/
+	@Column(name = "last_nameU")
 	private String lastNameU;
 	/***/
+	@Column(name = "emailU")
 	private String emailU;
 	/***/
+	@Column(name = "passwordU")
 	private String passwordU;
 	/***/
 	@OneToMany(mappedBy="user")

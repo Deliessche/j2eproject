@@ -51,11 +51,22 @@ public class JeeApplication implements CommandLineRunner {
 		.forEach(u -> System.out.println("user "+u.getIdU()+" "+u.getFirstNameU()+" "+u.getLastNameU()));
 		/** GET USER **/
 		User user = userService.getUser(3);
-		System.out.println("> user 3 : "+user.getFirstNameU()+" "+user.getLastNameU());
+		System.out.println("> user (by id) 3 : "+user.getFirstNameU()+" "+user.getLastNameU());
+		/** GET USER (BY EMAIL) **/
+		User user2 = userService.getUser("angelo.deliessche@gmail.com");
+		System.out.println("> user (by email) 2 : "+user2.getFirstNameU()+" "+user2.getLastNameU());
+		/** GET USER (BY EMAIL AND PASSWORD) **/
+		User user3 = userService.getUser(1);
+		System.out.println("> user (by id) 1 : "+user3.getFirstNameU()+" "+user3.getLastNameU());
+		/** IS CREDENTIAL VALID OR NOT **/
+		boolean existOrNot = userService.isValidAccount(user3.getEmailU(), user3.getPasswordU());
+		System.out.println("> le compte de "+user3.getFirstNameU()+" existe t-il ? "+existOrNot);
+		existOrNot = userService.isValidAccount("test@test.fr", "test");
+		System.out.println("> le compte de test@test.fr existe t-il ? "+existOrNot);
 		/** SET PASSWORD **/
-		userService.setPassword(user.getIdU(), "newtest4");
+		// userService.setPassword(user.getIdU(), "newtest4");
 		/** CREATE USER **/
-		userService.createUser("Neaddl", "KddEMISSI", "neadddl.k@hotmail.fr", "ddddddddd");
+		// userService.createUser("Neaddl", "KddEMISSI", "neadddl.k@hotmail.fr", "ddddddddd");
 	}
 
 }

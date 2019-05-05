@@ -25,5 +25,21 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	 */
 	@Query("SELECT u FROM User u WHERE u.id = :id")
 	User findById(@Param("id") int id);
-
+	
+	/**
+	 * renvoie un utilisateur en fonction de son email
+	 * @param email
+	 * @return un objet User
+	 */
+	@Query("SELECT u FROM User u WHERE u.emailU = :emailU")
+	User findByEmail(@Param("emailU") String emailU);
+	
+	/**
+	 * renvoie un utilisateur en fonction de son email et de son mot de passe
+	 * @param email
+	 * @param password
+	 * @return un objet User
+	 */
+	@Query("SELECT u FROM User u WHERE u.emailU = :emailU AND u.passwordU = :passwordU")
+	User findByEmailAndPassword(@Param("emailU") String emailU, @Param("passwordU") String passwordU);
 }
