@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -27,9 +29,11 @@ public class User {
 	@Column(name = "emailU")
 	private String emailU;
 	/***/
+	@JsonIgnore
 	@Column(name = "passwordU")
 	private String passwordU;
 	/***/
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Command> commands;
 

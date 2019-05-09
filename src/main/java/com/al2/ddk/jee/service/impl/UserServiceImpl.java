@@ -19,25 +19,49 @@ public class UserServiceImpl implements UserService {
 	public UserServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
-	
+
 	/******/
 	@Override
 	public List<User> getAllUser() {
 		return userRepository.findAll();
 	}
-	
+
 	/******/
 	@Override
 	public User getUser(int id) {
 		return userRepository.findById(id);
 	}
-	
+
 	/******/
 	@Override
 	public User getUser(String email) {
 		return userRepository.findByEmail(email);
 	}
-	
+
+	/******/
+	@Override
+	public void createUser(User user) {
+		userRepository.save(user);
+	}
+
+	/******/
+	@Override
+	public void deleteUser(int id) {
+		userRepository.deleteById(id);
+	}
+
+	/******/
+	@Override
+	public boolean setPassword(int id, String password) {
+		User user = getUser(id);
+		if(user!=null) {
+			user.setPasswordU(password);
+			userRepository.save(user);
+			return true;
+		}
+		return false;
+	}
+
 	/******/
 	@Override
 	public boolean isValidAccount(String email, String password) {
@@ -48,20 +72,10 @@ public class UserServiceImpl implements UserService {
 
 	/******/
 	@Override
-	public void setPassword(int id, String password) {
-		User user = getUser(id);
-		user.setPasswordU(password);
-		userRepository.save(user);
-	}
-
-	/******/
-	@Override
-	public void createUser(String firstName, String lastName, String email, String password) {
-		User user = new User();
-		user.setFirstNameU(firstName);
-		user.setLastNameU(lastName);
-		user.setEmailU(email);
-		user.setPasswordU(password);
-		userRepository.save(user);
+	public boolean isEmailExist(String email) {
+		if(getUser(email)!=null) {
+			return true;
+		}
+		return false;
 	}
 }

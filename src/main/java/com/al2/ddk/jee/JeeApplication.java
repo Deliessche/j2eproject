@@ -66,7 +66,10 @@ public class JeeApplication implements CommandLineRunner {
 		/** SET PASSWORD **/
 		// userService.setPassword(user.getIdU(), "newtest4");
 		/** CREATE USER **/
-		// userService.createUser("Neaddl", "KddEMISSI", "neadddl.k@hotmail.fr", "ddddddddd");
+		// user3.setIdU(null);
+		// userService.createUser(user3);
+		/** DELETE USER **/
+		// userService.deleteUser(6);
 	}
 
 }

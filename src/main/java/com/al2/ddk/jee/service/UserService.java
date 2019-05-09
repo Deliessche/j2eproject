@@ -14,21 +14,41 @@ public interface UserService {
 	 * @return une liste de User
 	 */
 	List<User> getAllUser();
-	
+
 	/**
 	 * retourne un utilisateur en fonction de son identifiant
 	 * @param id
 	 * @return un User
 	 */
 	User getUser(int id);
-	
+
 	/**
 	 * retourne un utilisateur en fonction de son email
 	 * @param email
 	 * @return un User
 	 */
 	User getUser(String email);
-	
+
+	/**
+	 * créer un nouvel utilisateur
+	 * @param user
+	 */
+	void createUser(User user);
+
+	/**
+	 * supprime un utilisateur en fonction de son identifiant
+	 * @param id
+	 */
+	void deleteUser(int id);
+
+	/**
+	 * modifie le mot de passe d'un utilisateur en fonction de son identifiant
+	 * @param id
+	 * @param password
+	 * @return true si la modif a réussit, sinon false
+	 */
+	boolean setPassword(int id, String password);
+
 	/**
 	 * permet de savoir si les identifiants de l'utilisateur correspondent ou non
 	 * @param email
@@ -38,18 +58,9 @@ public interface UserService {
 	boolean isValidAccount(String email, String password);
 	
 	/**
-	 * modifie le mot de passe d'un utilisateur en fonction de son identifiant
-	 * @param id
-	 * @param password
-	 */
-	void setPassword(int id, String password);
-	
-	/**
-	 * créer un nouvel utilisateur
-	 * @param firstName
-	 * @param lastName
+	 * permet de savoir si un utilisateur possédant cet email existe déjà
 	 * @param email
-	 * @param password
+	 * @return true si les l'email existe, sinon false
 	 */
-	void createUser(String firstName, String lastName, String email,  String password);
+	boolean isEmailExist(String email);
 }
