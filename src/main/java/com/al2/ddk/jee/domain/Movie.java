@@ -19,21 +19,31 @@ public class Movie {
 	@Column(name = "idM")
 	private Integer idM;
 	/***/
+	@Column(name = "nameM")
 	private String nameM;
 	/***/
+	@Column(name = "durationM")
 	private int durationM;
 	/***/
+	@Column(name = "yearM")
 	private int yearM;
 	/***/
-	private String creatorM;
-	/***/
+	@Column(name = "descriptionM")
 	private String descriptionM;
+	/***/
+	@Column(name = "cover_url")
+	private String cover_url;
 	/***/
 	@OneToMany(mappedBy="movie")
 	private List<Copy> copies;
 
-	/***/
-	public Movie() {}
+	/**
+	 * @param nameM
+	 * @param durationM
+	 * @param yearM
+	 * @param descriptionM
+	 * @param cover_url*/
+	public Movie(String nameM, int durationM, int yearM, String descriptionM, String cover_url) {}
 
 	/**
 	 * @return the idM
@@ -92,20 +102,6 @@ public class Movie {
 	}
 
 	/**
-	 * @return the creatorM
-	 */
-	public String getCreatorM() {
-		return creatorM;
-	}
-
-	/**
-	 * @param creatorM the creatorM to set
-	 */
-	public void setCreatorM(String creatorM) {
-		this.creatorM = creatorM;
-	}
-
-	/**
 	 * @return the descriptionM
 	 */
 	public String getDescriptionM() {
@@ -131,5 +127,13 @@ public class Movie {
 	 */
 	public void setCopies(List<Copy> copies) {
 		this.copies = copies;
+	}
+
+	public String getCover_url() {
+		return cover_url;
+	}
+
+	public void setCover_url(String cover_url) {
+		this.cover_url = cover_url;
 	}
 }

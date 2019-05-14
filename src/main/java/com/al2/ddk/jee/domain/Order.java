@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Command {
+public class Order {
 
 	/***/
 	@Id
@@ -23,11 +23,11 @@ public class Command {
 	@ManyToOne
 	private User user;
 	/***/
-	@OneToMany(mappedBy="command")
+	@OneToMany(mappedBy="order")
 	private List<Copy> copies;
 
 	/***/
-	public Command() {}
+	public Order() {}
 
 	/**
 	 * @return the idC

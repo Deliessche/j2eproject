@@ -21,4 +21,14 @@ public interface MovieService {
 	 * @return un Movie
 	 */
 	Movie getMovie(int id);
+
+	/**
+	 * crée un nouveau film
+	 * @param nameM
+	 * @param durationM
+	 * @param yearM
+	 * @param descriptionM
+	 * @param cover_url
+	 */
+	void createMovie(String nameM, int durationM, int yearM, String descriptionM, String cover_url);
 }

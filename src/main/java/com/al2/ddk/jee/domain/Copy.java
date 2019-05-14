@@ -22,7 +22,7 @@ public class Copy {
 	private Movie movie;
 	/***/
 	@ManyToOne
-	private Command command;
+	private Order order;
 	
 	/***/
 	public Copy() {}
@@ -72,14 +72,14 @@ public class Copy {
 	/**
 	 * @return the command
 	 */
-	public Command getCommand() {
-		return command;
+	public Order getOrder() {
+		return order;
 	}
 
 	/**
-	 * @param command the command to set
+	 * @param order the command to set
 	 */
-	public void setCommand(Command command) {
-		this.command = command;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 }

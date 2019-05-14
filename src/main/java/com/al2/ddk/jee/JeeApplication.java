@@ -2,6 +2,7 @@ package com.al2.ddk.jee;
 
 import java.util.List;
 
+import com.al2.ddk.jee.api.MovieDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,11 +20,14 @@ public class JeeApplication implements CommandLineRunner {
 	private final MovieService movieService;
 	/***/
 	private final UserService userService;
+	/***/
+	private final MovieDB movieDB;
 
 	@Autowired
 	public JeeApplication(MovieService movieService, UserService userService) {
 		this.movieService = movieService;
 		this.userService = userService;
+		movieDB = new MovieDB(movieService);
 	}
 
 	public static void main(String[] args) {
@@ -32,7 +36,8 @@ public class JeeApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
+
+		//MovieDB.insertMoviesByGenre(28);
 		/************* Test movieService *************/
 		/** GET ALL MOVIES **/
 		List<Movie> allMovies = movieService.getAllMovies();

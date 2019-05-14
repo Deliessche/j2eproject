@@ -35,7 +35,7 @@ public class User {
 	/***/
 	@JsonIgnore
 	@OneToMany(mappedBy="user")
-	private List<Command> commands;
+	private List<Order> orders;
 
 	/***/
 	public User() {}
@@ -113,14 +113,14 @@ public class User {
 	/**
 	 * @return the commands
 	 */
-	public List<Command> getCommands() {
-		return commands;
+	public List<Order> getOrders() {
+		return orders;
 	}
 
 	/**
-	 * @param commands the commands to set
+	 * @param orders the commands to set
 	 */
-	public void setCommands(List<Command> commands) {
-		this.commands = commands;
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 }

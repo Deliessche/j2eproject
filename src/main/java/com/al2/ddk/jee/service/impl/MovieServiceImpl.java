@@ -33,4 +33,12 @@ public class MovieServiceImpl implements MovieService {
 		
 		return movieRepository.findById(id);
 	}
+
+	/*****/
+	@Override
+	public void createMovie(String nameM, int durationM, int yearM, String descriptionM, String cover_url) {
+		Movie movie = new Movie(nameM, durationM, yearM, descriptionM, cover_url);
+
+		movieRepository.save(movie);
+	}
 }
