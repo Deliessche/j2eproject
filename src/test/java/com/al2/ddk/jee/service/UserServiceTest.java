@@ -3,9 +3,11 @@ package com.al2.ddk.jee.service;
 // import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Before;
@@ -35,6 +37,26 @@ public class UserServiceTest {
 	}
 
 	@Test
+	public void shouldReturnAllUsers() {
+		// Given
+		List<User> users = new ArrayList<User>();
+		User user = new User();
+		users.add(user);
+		// When
+		when(userService.getAllUser()).thenReturn(users);
+		// Then
+		assertTrue("lists should be equals", userService.getAllUser().equals(users));
+	}
+
+	@Test
+	public void shouldReturnEmptyListUser() {
+		// When
+		when(userService.getAllUser()).thenReturn(Collections.emptyList());
+		// Then
+		assertTrue("list should be empty", userService.getAllUser().isEmpty());
+	}
+
+	@Test
 	public void shouldReturnUserById() {
 		// Given
 		User user = new User();
@@ -46,14 +68,28 @@ public class UserServiceTest {
 	}
 
 	@Test
-	public void shouldReturnAllUsers() {
-		// Given
-		List<User> users = new ArrayList<User>();
-		User user = new User();
-		users.add(user);
+	public void shouldNotReturnUserById() {
 		// When
-		when(userService.getAllUser()).thenReturn(users);
+		when(userService.getUser(anyInt())).thenReturn(null);
 		// Then
-		assertTrue("users lists should be equals", userService.getAllUser().equals(users));
+		assertTrue("user should be null", userService.getUser(anyInt()) == null);
+	}
+
+	@Test
+	public void shouldReturnUserByEmail() {
+		// Given
+		User user = new User();
+		// When
+		when(userService.getUser(any())).thenReturn(user);
+		// Then
+		assertTrue("users should be equals", userService.getUser(any()).equals(user));
+	}
+
+	@Test
+	public void shouldNotReturnUserByEmail() {
+		// When
+		when(userService.getUser(any())).thenReturn(null);
+		// Then
+		assertTrue("user should be null", userService.getUser(any()) == null);
 	}
 }
