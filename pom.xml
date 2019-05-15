@@ -14,6 +14,19 @@
 	<name>jee</name>
 	<description>Projet J2e</description>
 
+	<distributionManagement>
+		<repository>
+			<id>deployment</id>
+			<name>Internal Releases</name>
+			<url>http://delissch.freeboxos.net:8081/repository/app-repo/</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>deployment</id>
+			<name>Internal Snapshot Releases</name>
+			<url>http://delissch.ddns.net:8081/repository/app-repo-snapshot/</url>
+		</snapshotRepository>
+	</distributionManagement>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
