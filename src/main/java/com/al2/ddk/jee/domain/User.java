@@ -35,7 +35,7 @@ public class User {
 	/***/
 	@JsonIgnore
 	@OneToMany(mappedBy="user")
-	private List<Order> orders;
+	private List<NetflischOrder> orders;
 
 	/***/
 	public User() {}
@@ -113,14 +113,14 @@ public class User {
 	/**
 	 * @return the commands
 	 */
-	public List<Order> getOrders() {
+	public List<NetflischOrder> getOrders() {
 		return orders;
 	}
 
 	/**
 	 * @param orders the commands to set
 	 */
-	public void setOrders(List<Order> orders) {
+	public void setOrders(List<NetflischOrder> orders) {
 		this.orders = orders;
 	}
 }

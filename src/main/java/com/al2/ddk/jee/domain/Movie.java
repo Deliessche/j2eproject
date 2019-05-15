@@ -37,6 +37,9 @@ public class Movie {
 	@OneToMany(mappedBy="movie")
 	private List<Copy> copies;
 
+	/***/
+	public Movie() {}
+	
 	/**
 	 * @param nameM
 	 * @param durationM

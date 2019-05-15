@@ -2,23 +2,20 @@ package com.al2.ddk.jee.domain;
 
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Order {
+public class NetflischOrder {
 
 	/***/
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idC")
-	private Integer idC;
+	private Integer idO;
 	/***/
 	@ManyToOne
 	private User user;
@@ -27,20 +24,20 @@ public class Order {
 	private List<Copy> copies;
 
 	/***/
-	public Order() {}
+	public NetflischOrder() {}
 
 	/**
-	 * @return the idC
+	 * @return the idO
 	 */
-	public Integer getIdC() {
-		return idC;
+	public Integer getIdO() {
+		return idO;
 	}
 
 	/**
-	 * @param idC the idC to set
+	 * @param idC the idO to set
 	 */
-	public void setIdC(Integer idC) {
-		this.idC = idC;
+	public void setIdO(Integer idO) {
+		this.idO = idO;
 	}
 
 	/**

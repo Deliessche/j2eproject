@@ -22,7 +22,7 @@ public class Copy {
 	private Movie movie;
 	/***/
 	@ManyToOne
-	private Order order;
+	private NetflischOrder order;
 	
 	/***/
 	public Copy() {}
@@ -72,14 +72,14 @@ public class Copy {
 	/**
 	 * @return the command
 	 */
-	public Order getOrder() {
+	public NetflischOrder getOrder() {
 		return order;
 	}
 
 	/**
 	 * @param order the command to set
 	 */
-	public void setOrder(Order order) {
+	public void setOrder(NetflischOrder order) {
 		this.order = order;
 	}
 }
