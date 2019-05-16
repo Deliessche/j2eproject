@@ -5,9 +5,12 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.al2.ddk.jee.domain.User;
+import com.al2.ddk.jee.exception.NetflischException;
 import com.al2.ddk.jee.repository.UserRepository;
 import com.al2.ddk.jee.service.UserService;
 
@@ -42,33 +45,55 @@ public class UserResource {
 	/**
 	 * retourne un utilisateur de Netflisch
 	 * @param id
-	 * @return un utilisateur
+	 * @return
+	 * @throws NetflischException
 	 */
 	@GetMapping("/user/{id}")
-	public User getUserById(@PathVariable int id) {
+	public User getUserById(@PathVariable int id) throws NetflischException {
 		User user = userService.getUser(id);
-		return user;
+		if(user == null) {
+			throw new NetflischException(400, "Cet utilisateur n'existe pas");
+		} else {
+			return user;
+		}
+
 	}
 
 	/**
 	 * supprime un utilisateur de Netflisch
 	 * @param id
+	 * @return
+	 * @throws NetflischException
 	 */
 	@DeleteMapping("/user/{id}")
-	public void deleteUser(@PathVariable int id) {
-		if(userService.getUser(id)!=null) {
+	public ResponseEntity<Object> deleteUser(@PathVariable int id) throws NetflischException {
+		if(userService.getUser(id) == null) {
+			throw new NetflischException(400, "Cet utilisateur n'existe pas");
+		} else {
 			userService.deleteUser(id);
 		}
+		return ResponseEntity.ok().build();
 	}
 
 	/**
 	 * créer un compte utilisateur Netflisch
 	 * @param user
+	 * @return
+	 * @throws NetflischException
 	 */
 	@PostMapping("/user")
-	public void createUser(@RequestBody User user) {
-		if(!userService.isEmailExist(user.getEmailU())) {
-			userService.createUser(user);
+	public ResponseEntity<Object> createUser(@RequestBody User user) throws NetflischException {
+		/** si le user n'existe déjà on ne fait rien **/
+		if(userService.isEmailExist(user.getEmailU())) {
+			//return ResponseEntity.badRequest().body("Cet utilisateur existe déjà");
+			throw new NetflischException(400, "Cet utilisateur existe déjà");
+		} else {
+			try {
+				userService.createUser(user);
+			} catch (Exception e) {
+				throw new NetflischException(400, e.getMessage());
+			}
 		}
+		return ResponseEntity.ok().build();
 	}
 }

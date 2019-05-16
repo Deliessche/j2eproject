@@ -32,8 +32,9 @@ public interface UserService {
 	/**
 	 * créer un nouvel utilisateur
 	 * @param user
+	 * @throws Exception 
 	 */
-	void createUser(User user);
+	void createUser(User user) throws Exception;
 
 	/**
 	 * supprime un utilisateur en fonction de son identifiant

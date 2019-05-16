@@ -29,7 +29,6 @@ public class User {
 	@Column(name = "emailU")
 	private String emailU;
 	/***/
-	@JsonIgnore
 	@Column(name = "passwordU")
 	private String passwordU;
 	/***/
