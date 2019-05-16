@@ -24,7 +24,7 @@
 		<snapshotRepository>
 			<id>deployment</id>
 			<name>Internal Snapshot Releases</name>
-			<url>http://delissch.ddns.net:8081/repository/app-repo-snapshot/</url>
+			<url>http://delissch.freeboxos.net:8081/repository/app-repo-snapshot/</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<properties>
