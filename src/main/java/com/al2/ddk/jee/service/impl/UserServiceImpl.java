@@ -2,10 +2,12 @@ package com.al2.ddk.jee.service.impl;
 
 import java.util.List;
 
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.al2.ddk.jee.domain.User;
+import com.al2.ddk.jee.exception.NetflischException;
 import com.al2.ddk.jee.repository.UserRepository;
 import com.al2.ddk.jee.service.UserService;
 
@@ -40,8 +42,12 @@ public class UserServiceImpl implements UserService {
 
 	/******/
 	@Override
-	public void createUser(User user) {
-		userRepository.save(user);
+	public void createUser(User user) throws Exception {
+		if (user.getIdU() != null) {
+			throw new Exception("Erreur, l'ID doit être null");
+		} else {
+			userRepository.save(user);
+		}
 	}
 
 	/******/
