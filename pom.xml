@@ -18,13 +18,13 @@
 		<repository>
 			<id>deployment</id>
 			<name>Internal Releases</name>
-			<url>http://delissch.freeboxos.net:8081/repository/app-repo/</url>
+			<url>http://delissch.freeboxos.fr:8081/repository/app-repo/</url>
 		</repository>
 
 		<snapshotRepository>
 			<id>deployment</id>
 			<name>Internal Snapshot Releases</name>
-			<url>http://delissch.freeboxos.net:8081/repository/app-repo-snapshot/</url>
+			<url>http://delissch.freeboxos.fr:8081/repository/app-repo-snapshot/</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<properties>
