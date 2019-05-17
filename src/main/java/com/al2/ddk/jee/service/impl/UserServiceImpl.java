@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.al2.ddk.jee.domain.User;
-import com.al2.ddk.jee.exception.NetflischException;
 import com.al2.ddk.jee.repository.UserRepository;
 import com.al2.ddk.jee.service.UserService;
 
@@ -47,6 +46,16 @@ public class UserServiceImpl implements UserService {
 		} else {
 			userRepository.save(user);
 		}
+	}
+	
+	/******/
+	@Override
+	public void updateUser(User user) throws Exception {
+		if (user.getIdU() == null) {
+			throw new Exception("Erreur, l'ID ne doit pas être null");
+		} else {
+			userRepository.save(user);
+		}	
 	}
 
 	/******/

@@ -52,11 +52,10 @@ public class UserResource {
 	public User getUserById(@PathVariable int id) throws NetflischException {
 		User user = userService.getUser(id);
 		if(user == null) {
-			throw new NetflischException(400, "Cet utilisateur n'existe pas");
+			throw new NetflischException(HttpStatus.NOT_FOUND.value(), "Cet utilisateur n'existe pas");
 		} else {
 			return user;
 		}
-
 	}
 
 	/**
@@ -68,7 +67,7 @@ public class UserResource {
 	@DeleteMapping("/user/{id}")
 	public ResponseEntity<Object> deleteUser(@PathVariable int id) throws NetflischException {
 		if(userService.getUser(id) == null) {
-			throw new NetflischException(400, "Cet utilisateur n'existe pas");
+			throw new NetflischException(HttpStatus.NOT_FOUND.value(), "Cet utilisateur n'existe pas");
 		} else {
 			userService.deleteUser(id);
 		}
@@ -86,12 +85,32 @@ public class UserResource {
 		/** si le user n'existe déjà on ne fait rien **/
 		if(userService.isEmailExist(user.getEmailU())) {
 			//return ResponseEntity.badRequest().body("Cet utilisateur existe déjà");
-			throw new NetflischException(400, "Cet utilisateur existe déjà");
+			throw new NetflischException(HttpStatus.BAD_REQUEST.value(), "Cet utilisateur existe déjà");
 		} else {
 			try {
 				userService.createUser(user);
 			} catch (Exception e) {
-				throw new NetflischException(400, e.getMessage());
+				throw new NetflischException(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+			}
+		}
+		return ResponseEntity.ok().build();
+	}
+
+	/**
+	 * met à jour un compte utilisateur Netflisch
+	 * @param user
+	 * @return
+	 * @throws NetflischException
+	 */
+	@PutMapping("/user")
+	public ResponseEntity<Object> updateUser(@RequestBody User user) throws NetflischException {
+		if(user.getIdU() == null || userService.getUser(user.getIdU()) == null) {
+			throw new NetflischException(HttpStatus.NOT_FOUND.value(), "Cet utilisateur n'existe pas");
+		} else {
+			try {
+				userService.updateUser(user);
+			} catch (Exception e) {
+				throw new NetflischException(HttpStatus.BAD_REQUEST.value(), e.getMessage());
 			}
 		}
 		return ResponseEntity.ok().build();
