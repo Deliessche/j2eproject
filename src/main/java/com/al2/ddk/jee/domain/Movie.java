@@ -1,14 +1,10 @@
 package com.al2.ddk.jee.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Movie {
@@ -28,12 +24,14 @@ public class Movie {
 	@Column(name = "yearM")
 	private int yearM;
 	/***/
+	@Lob
 	@Column(name = "descriptionM")
 	private String descriptionM;
 	/***/
 	@Column(name = "cover_url")
 	private String cover_url;
 	/***/
+	@JsonIgnore
 	@OneToMany(mappedBy="movie")
 	private List<Copy> copies;
 
@@ -46,7 +44,13 @@ public class Movie {
 	 * @param yearM
 	 * @param descriptionM
 	 * @param cover_url*/
-	public Movie(String nameM, int durationM, int yearM, String descriptionM, String cover_url) {}
+	public Movie(String nameM, int durationM, int yearM, String descriptionM, String cover_url) {
+		this.nameM = nameM;
+		this.durationM = durationM;
+		this.yearM = yearM;
+		this.descriptionM = descriptionM;
+		this.cover_url = cover_url;
+	}
 
 	/**
 	 * @return the idM
