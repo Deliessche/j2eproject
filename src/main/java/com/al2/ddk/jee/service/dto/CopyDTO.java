@@ -1,30 +1,29 @@
-package com.al2.ddk.jee.domain;
+package com.al2.ddk.jee.service.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import com.al2.ddk.jee.domain.Copy;
+import com.al2.ddk.jee.domain.Movie;
+import com.al2.ddk.jee.domain.NetflischOrder;
 
-
-@Entity
-public class Copy {
+public class CopyDTO {
 
 	/***/
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idC")
 	private Integer idC;
 	/***/
-	@ManyToOne
 	private Movie movie;
 	/***/
-	@ManyToOne
 	private NetflischOrder order;
 
 	/***/
-	public Copy() {}
+	public CopyDTO() {}
+
+	/***/
+	public CopyDTO(Copy copy) {
+		this.idC = copy.getIdC();
+		this.movie = copy.getMovie();
+		if(copy.getOrder() != null) {
+			this.order = copy.getOrder();
+		}
+	}
 
 	/**
 	 * @return the idC
@@ -34,12 +33,12 @@ public class Copy {
 	}
 
 	/**
-	 * @param idC the idCopy to set
+	 * @param idC the idC to set
 	 */
-	public void setIdCopy(Integer idC) {
+	public void setIdC(Integer idC) {
 		this.idC = idC;
 	}
-	
+
 	/**
 	 * @return the movie
 	 */
@@ -55,14 +54,14 @@ public class Copy {
 	}
 
 	/**
-	 * @return the command
+	 * @return the order
 	 */
 	public NetflischOrder getOrder() {
 		return order;
 	}
 
 	/**
-	 * @param order the command to set
+	 * @param order the order to set
 	 */
 	public void setOrder(NetflischOrder order) {
 		this.order = order;

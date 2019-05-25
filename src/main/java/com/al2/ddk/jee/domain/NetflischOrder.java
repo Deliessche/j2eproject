@@ -21,7 +21,6 @@ public class NetflischOrder {
 	@Column(name = "idO")
 	private Integer idO;
 	/***/
-	@JsonIgnore
 	@ManyToOne
 	private User user;
 	/***/

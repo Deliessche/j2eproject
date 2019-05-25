@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.al2.ddk.jee.domain.NetflischOrder;
+import com.al2.ddk.jee.domain.User;
 import com.al2.ddk.jee.repository.NetflischOrderRepository;
 import com.al2.ddk.jee.service.NetflischOrderService;
 
@@ -25,11 +26,31 @@ public class NetflischOrderServiceImpl implements NetflischOrderService{
 	public List<NetflischOrder> getAllNetflischOrders() {
 		return netflischOrderRepository.findAll();
 	}
+	
+	/******/
+	@Override
+	public List<NetflischOrder> getAllOrdersOfUser(int idUser) {
+		return netflischOrderRepository.findAllByUserId(idUser);
+	}
 
 	/******/
 	@Override
 	public NetflischOrder getNetflischOrder(int id) {
 		return netflischOrderRepository.findById(id);
+	}
+	
+	/******/
+	@Override
+	public void createNetflischOrder(User user) {
+		NetflischOrder order = new NetflischOrder();
+		order.setUser(user);
+		netflischOrderRepository.save(order);
+	}
+	
+	/******/
+	@Override
+	public void deleteNetflischOrder(int id) {
+		netflischOrderRepository.deleteById(id);
 	}
 
 	/******/
@@ -38,11 +59,5 @@ public class NetflischOrderServiceImpl implements NetflischOrderService{
 		if(getNetflischOrder(id) != null) {
 			return true;
 		} else return false;
-	}
-
-	/******/
-	@Override
-	public List<NetflischOrder> getAllOrdersOfUser(int idUser) {
-		return netflischOrderRepository.findAllByUserId(idUser);
 	}
 }

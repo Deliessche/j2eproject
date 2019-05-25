@@ -6,15 +6,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.al2.ddk.jee.domain.NetflischOrder;
+import com.al2.ddk.jee.domain.User;
 import com.al2.ddk.jee.exception.NetflischException;
 import com.al2.ddk.jee.repository.NetflischOrderRepository;
 import com.al2.ddk.jee.service.NetflischOrderService;
+import com.al2.ddk.jee.service.UserService;
+import com.al2.ddk.jee.service.dto.NetflischOrderDTO;
 
 @RestController
 @RequestMapping("/api")
@@ -27,11 +34,14 @@ public class NetflischOrderRessource {
 	private NetflischOrderRepository netflischOrderRepository;
 	/***/
 	private NetflischOrderService netflischOrderService;
+	/***/
+	private UserService userService;
 
 	/***/
-	public NetflischOrderRessource(NetflischOrderRepository netflischOrderRepository, NetflischOrderService netflischOrderService) {
+	public NetflischOrderRessource(NetflischOrderRepository netflischOrderRepository, NetflischOrderService netflischOrderService, UserService userService) {
 		this.netflischOrderRepository = netflischOrderRepository;
 		this.netflischOrderService = netflischOrderService;
+		this.userService = userService;
 	}
 
 	/**
@@ -42,6 +52,21 @@ public class NetflischOrderRessource {
 	public List<NetflischOrder> getAllNetflischOrders() {
 		List<NetflischOrder> allOrders = netflischOrderService.getAllNetflischOrders();
 		return allOrders;
+	}
+
+	/**
+	 * retourne toute les commandes d'un utilisateur
+	 * @param id
+	 * @return une liste de NetflischOrder
+	 * @throws NetflischException
+	 */
+	@GetMapping("/orders/users/{id}")
+	public List<NetflischOrder> getAllOrdersOfUser(@PathVariable int id) throws NetflischException {
+		if(userService.getUser(id) == null) {
+			throw new NetflischException(HttpStatus.NOT_FOUND.value(), "Cet utilisateur n'existe pas");
+		} else {
+			return netflischOrderService.getAllOrdersOfUser(id);
+		}
 	}
 
 	/**
@@ -58,5 +83,36 @@ public class NetflischOrderRessource {
 		} else {
 			return order;
 		}
+	}
+
+	/**
+	 * supprime une commande de Netflisch
+	 * @param id
+	 * @return
+	 * @throws NetflischException
+	 */
+	@DeleteMapping("/orders/{id}")
+	public ResponseEntity<Object> deleteNetflischOrder(@PathVariable int id) throws NetflischException {
+		if(netflischOrderService.getNetflischOrder(id) == null) {
+			throw new NetflischException(HttpStatus.NOT_FOUND.value(), "Cette commande n'existe pas");
+		} else {
+			netflischOrderService.deleteNetflischOrder(id);
+		}
+		return ResponseEntity.ok().build();
+	}
+
+	/**
+	 * creer une commande d'un utilisateur Netflisch
+	 * @param user
+	 * @return
+	 */
+	@PostMapping("/orders")
+	public ResponseEntity<Object> createNetflischOrder(@RequestBody User user) throws NetflischException {
+		if(userService.getUser(user.getIdU()) == null) {
+			throw new NetflischException(HttpStatus.NOT_FOUND.value(), "Cet utilisateur n'existe pas");
+		} else {
+			netflischOrderService.createNetflischOrder(user);
+		}
+		return ResponseEntity.ok().build();
 	}
 }
