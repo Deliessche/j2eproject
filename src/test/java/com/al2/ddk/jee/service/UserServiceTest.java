@@ -16,13 +16,14 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.junit.MockitoJUnitRunner;
+//import org.springframework.test.context.junit4.SpringRunner;
 
 import com.al2.ddk.jee.domain.User;
 import com.al2.ddk.jee.repository.UserRepository;
 import com.al2.ddk.jee.service.impl.UserServiceImpl;
 
-@RunWith(SpringRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
 
 	@Mock

@@ -1,44 +1,41 @@
-package com.al2.ddk.jee.domain;
+package com.al2.ddk.jee.service.dto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import com.al2.ddk.jee.domain.NetflischOrder;
+import com.al2.ddk.jee.domain.User;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
-public class User {
+public class UserDTO {
 
 	/***/
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idU")
 	private Integer idU;
 	/***/
-	@Column(name = "first_nameU")
 	private String firstNameU;
 	/***/
-	@Column(name = "last_nameU")
 	private String lastNameU;
 	/***/
-	@Column(name = "emailU")
 	private String emailU;
 	/***/
-	@JsonIgnore
-	@Column(name = "passwordU")
 	private String passwordU;
 	/***/
-	@JsonIgnore
-	@OneToMany(mappedBy="user")
-	private List<NetflischOrder> orders;
+	private List<Integer> idOrders;
 
 	/***/
-	public User() {}
+	public UserDTO() {}
+
+	/***/
+	public UserDTO(User user) {
+		this.idU = user.getIdU();
+		this.firstNameU = user.getFirstNameU();
+		this.lastNameU = user.getLastNameU();
+		this.emailU = user.getEmailU();
+		this.passwordU = user.getPasswordU();
+		if(user.getOrders() != null) {
+			this.idOrders = user.getOrders().stream().map(NetflischOrder::getIdO).collect(Collectors.toList());
+		}
+	}
 
 	/**
 	 * @return the idU
@@ -111,16 +108,16 @@ public class User {
 	}
 
 	/**
-	 * @return the commands
+	 * @return the idOrders
 	 */
-	public List<NetflischOrder> getOrders() {
-		return orders;
+	public List<Integer> getIdOrders() {
+		return idOrders;
 	}
 
 	/**
-	 * @param orders the commands to set
+	 * @param idOrders the idOrders to set
 	 */
-	public void setOrders(List<NetflischOrder> orders) {
-		this.orders = orders;
+	public void setIdOrders(List<Integer> idOrders) {
+		this.idOrders = idOrders;
 	}
 }

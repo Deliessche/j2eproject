@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.al2.ddk.jee.domain.User;
+import com.al2.ddk.jee.service.dto.UserDTO;
 
 @Service
 public interface UserService {
@@ -31,17 +32,17 @@ public interface UserService {
 
 	/**
 	 * créer un nouvel utilisateur
-	 * @param user
+	 * @param DTO
 	 * @throws Exception 
 	 */
-	void createUser(User user) throws Exception;
+	void createUser(UserDTO DTO) throws Exception;
 	
 	/**
 	 * met à jour un utilisateur
-	 * @param user
+	 * @param DTO
 	 * @throws Exception
 	 */
-	void updateUser(User user) throws Exception;
+	void updateUser(UserDTO DTO) throws Exception;
 
 	/**
 	 * supprime un utilisateur en fonction de son identifiant

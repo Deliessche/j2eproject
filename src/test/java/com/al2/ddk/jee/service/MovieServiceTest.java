@@ -14,13 +14,14 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.junit.MockitoJUnitRunner;
+//import org.springframework.test.context.junit4.SpringRunner;
 
 import com.al2.ddk.jee.domain.Movie;
 import com.al2.ddk.jee.repository.MovieRepository;
 import com.al2.ddk.jee.service.impl.MovieServiceImpl;
 
-@RunWith(SpringRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class MovieServiceTest {
 
 	@Mock

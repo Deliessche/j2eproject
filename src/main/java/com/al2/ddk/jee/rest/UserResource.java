@@ -13,6 +13,7 @@ import com.al2.ddk.jee.domain.User;
 import com.al2.ddk.jee.exception.NetflischException;
 import com.al2.ddk.jee.repository.UserRepository;
 import com.al2.ddk.jee.service.UserService;
+import com.al2.ddk.jee.service.dto.UserDTO;
 
 @RestController
 @RequestMapping("/api")
@@ -36,7 +37,7 @@ public class UserResource {
 	 * retourne toute la liste des utilisateurs de Netflisch
 	 * @return une liste d'utilisateur
 	 */
-	@GetMapping("/user")
+	@GetMapping("/users")
 	public List<User> getAllUser() {
 		List<User> allUsers = userService.getAllUser();
 		return allUsers;
@@ -48,7 +49,7 @@ public class UserResource {
 	 * @return
 	 * @throws NetflischException
 	 */
-	@GetMapping("/user/{id}")
+	@GetMapping("/users/{id}")
 	public User getUserById(@PathVariable int id) throws NetflischException {
 		User user = userService.getUser(id);
 		if(user == null) {
@@ -64,7 +65,7 @@ public class UserResource {
 	 * @return
 	 * @throws NetflischException
 	 */
-	@DeleteMapping("/user/{id}")
+	@DeleteMapping("/users/{id}")
 	public ResponseEntity<Object> deleteUser(@PathVariable int id) throws NetflischException {
 		if(userService.getUser(id) == null) {
 			throw new NetflischException(HttpStatus.NOT_FOUND.value(), "Cet utilisateur n'existe pas");
@@ -80,8 +81,8 @@ public class UserResource {
 	 * @return
 	 * @throws NetflischException
 	 */
-	@PostMapping("/user")
-	public ResponseEntity<Object> createUser(@RequestBody User user) throws NetflischException {
+	@PostMapping("/users")
+	public ResponseEntity<Object> createUser(@RequestBody UserDTO user) throws NetflischException {
 		/** si le user n'existe déjà on ne fait rien **/
 		if(userService.isEmailExist(user.getEmailU())) {
 			//return ResponseEntity.badRequest().body("Cet utilisateur existe déjà");
@@ -102,8 +103,8 @@ public class UserResource {
 	 * @return
 	 * @throws NetflischException
 	 */
-	@PutMapping("/user")
-	public ResponseEntity<Object> updateUser(@RequestBody User user) throws NetflischException {
+	@PutMapping("/users")
+	public ResponseEntity<Object> updateUser(@RequestBody UserDTO user) throws NetflischException {
 		if(user.getIdU() == null || userService.getUser(user.getIdU()) == null) {
 			throw new NetflischException(HttpStatus.NOT_FOUND.value(), "Cet utilisateur n'existe pas");
 		} else {
