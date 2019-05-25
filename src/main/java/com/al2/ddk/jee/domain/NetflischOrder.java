@@ -2,6 +2,7 @@ package com.al2.ddk.jee.domain;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,17 +10,22 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class NetflischOrder {
 
 	/***/
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "idO")
 	private Integer idO;
 	/***/
+	@JsonIgnore
 	@ManyToOne
 	private User user;
 	/***/
+	@JsonIgnore
 	@OneToMany(mappedBy="order")
 	private List<Copy> copies;
 

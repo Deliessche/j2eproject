@@ -7,38 +7,43 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Copy {
 
 	/***/
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idCopy")
-	private Integer idCopy;
+	@Column(name = "idC")
+	private Integer idC;
 	/***/
+	@Column(name = "is_available")
 	boolean isAvailable = true;
 	/***/
+	@JsonIgnore
 	@ManyToOne
 	private Movie movie;
 	/***/
+	@JsonIgnore
 	@ManyToOne
 	private NetflischOrder order;
-	
+
 	/***/
 	public Copy() {}
 
 	/**
-	 * @return the idCopy
+	 * @return the idC
 	 */
-	public Integer getIdCopy() {
-		return idCopy;
+	public Integer getIdC() {
+		return idC;
 	}
 
 	/**
-	 * @param idCopy the idCopy to set
+	 * @param idC the idCopy to set
 	 */
-	public void setIdCopy(Integer idCopy) {
-		this.idCopy = idCopy;
+	public void setIdCopy(Integer idC) {
+		this.idC = idC;
 	}
 
 	/**

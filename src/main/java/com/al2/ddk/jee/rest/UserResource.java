@@ -46,7 +46,7 @@ public class UserResource {
 	/**
 	 * retourne un utilisateur de Netflisch
 	 * @param id
-	 * @return
+	 * @return un User
 	 * @throws NetflischException
 	 */
 	@GetMapping("/users/{id}")
