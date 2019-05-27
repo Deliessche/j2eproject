@@ -39,12 +39,13 @@ public class NetflischOrderServiceImpl implements NetflischOrderService{
 		return netflischOrderRepository.findById(id);
 	}
 	
-	/******/
+	/**
+	 * @return ****/
 	@Override
-	public void createNetflischOrder(User user) {
+	public NetflischOrder createNetflischOrder(User user) {
 		NetflischOrder order = new NetflischOrder();
 		order.setUser(user);
-		netflischOrderRepository.save(order);
+		return netflischOrderRepository.save(order);
 	}
 	
 	/******/

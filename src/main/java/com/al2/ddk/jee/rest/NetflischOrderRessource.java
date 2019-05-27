@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.al2.ddk.jee.domain.Movie;
 import com.al2.ddk.jee.domain.NetflischOrder;
 import com.al2.ddk.jee.domain.User;
 import com.al2.ddk.jee.exception.NetflischException;
 import com.al2.ddk.jee.repository.NetflischOrderRepository;
+import com.al2.ddk.jee.service.CopyService;
+import com.al2.ddk.jee.service.MovieService;
 import com.al2.ddk.jee.service.NetflischOrderService;
 import com.al2.ddk.jee.service.UserService;
 import com.al2.ddk.jee.service.dto.NetflischOrderDTO;
@@ -35,12 +38,18 @@ public class NetflischOrderRessource {
 	/***/
 	private NetflischOrderService netflischOrderService;
 	/***/
+	private MovieService movieService;
+	/***/
+	private CopyService copyService;
+	/***/
 	private UserService userService;
 
 	/***/
-	public NetflischOrderRessource(NetflischOrderRepository netflischOrderRepository, NetflischOrderService netflischOrderService, UserService userService) {
+	public NetflischOrderRessource(NetflischOrderRepository netflischOrderRepository, NetflischOrderService netflischOrderService, MovieService movieService, CopyService copyService, UserService userService) {
 		this.netflischOrderRepository = netflischOrderRepository;
 		this.netflischOrderService = netflischOrderService;
+		this.movieService = movieService;
+		this.copyService = copyService;
 		this.userService = userService;
 	}
 
@@ -106,12 +115,20 @@ public class NetflischOrderRessource {
 	 * @param user
 	 * @return
 	 */
-	@PostMapping("/orders")
-	public ResponseEntity<Object> createNetflischOrder(@RequestBody User user) throws NetflischException {
+	@PostMapping("/orders/movie/{id}")
+	public ResponseEntity<Object> createNetflischOrder(@RequestBody User user, @PathVariable int id) throws NetflischException {
 		if(userService.getUser(user.getIdU()) == null) {
 			throw new NetflischException(HttpStatus.NOT_FOUND.value(), "Cet utilisateur n'existe pas");
-		} else {
-			netflischOrderService.createNetflischOrder(user);
+		}
+		if(movieService.getMovie(id) == null) {
+			throw new NetflischException(HttpStatus.NOT_FOUND.value(), "Ce film n'existe pas");
+		}
+		NetflischOrder order = netflischOrderService.createNetflischOrder(user);
+		Movie movie = movieService.getMovie(id);
+		try {
+			copyService.createCopy(order, movie);
+		} catch (Exception e) {
+			throw new NetflischException(HttpStatus.BAD_REQUEST.value(), e.getMessage());
 		}
 		return ResponseEntity.ok().build();
 	}

@@ -33,8 +33,9 @@ public interface NetflischOrderService {
 	/**
 	 * créer un NetflischOrder
 	 * @param user
+	 * @return un NetflischOrder
 	 */
-	void createNetflischOrder(User user);
+	NetflischOrder createNetflischOrder(User user);
 
 	/**
 	 * supprime un NetflischOrder en fonction de son identifiant
