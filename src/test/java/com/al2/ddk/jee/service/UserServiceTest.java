@@ -30,7 +30,7 @@ public class UserServiceTest {
 	private UserRepository userRepository;
 
 	@InjectMocks
-	UserServiceImpl userService;
+	private UserServiceImpl userService;
 
 	@Before
 	public void init() {
