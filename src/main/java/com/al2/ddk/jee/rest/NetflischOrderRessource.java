@@ -20,7 +20,6 @@ import com.al2.ddk.jee.domain.NetflischOrder;
 import com.al2.ddk.jee.domain.User;
 import com.al2.ddk.jee.exception.NetflischException;
 import com.al2.ddk.jee.repository.NetflischOrderRepository;
-import com.al2.ddk.jee.service.CopyService;
 import com.al2.ddk.jee.service.MovieService;
 import com.al2.ddk.jee.service.NetflischOrderService;
 import com.al2.ddk.jee.service.UserService;
@@ -40,16 +39,13 @@ public class NetflischOrderRessource {
 	/***/
 	private MovieService movieService;
 	/***/
-	private CopyService copyService;
-	/***/
 	private UserService userService;
 
 	/***/
-	public NetflischOrderRessource(NetflischOrderRepository netflischOrderRepository, NetflischOrderService netflischOrderService, MovieService movieService, CopyService copyService, UserService userService) {
+	public NetflischOrderRessource(NetflischOrderRepository netflischOrderRepository, NetflischOrderService netflischOrderService, MovieService movieService, UserService userService) {
 		this.netflischOrderRepository = netflischOrderRepository;
 		this.netflischOrderService = netflischOrderService;
 		this.movieService = movieService;
-		this.copyService = copyService;
 		this.userService = userService;
 	}
 
@@ -126,7 +122,7 @@ public class NetflischOrderRessource {
 		NetflischOrder order = netflischOrderService.createNetflischOrder(user);
 		Movie movie = movieService.getMovie(id);
 		try {
-			copyService.createCopy(order, movie);
+			//copyService.createCopy(order, movie);
 		} catch (Exception e) {
 			throw new NetflischException(HttpStatus.BAD_REQUEST.value(), e.getMessage());
 		}

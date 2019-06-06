@@ -25,4 +25,12 @@ public interface CopyRepository extends JpaRepository<Copy, Integer>{
 	 */
 	@Query("SELECT c FROM Copy c WHERE c.id = :id")
 	Copy findById(@Param("id") int id);
+	
+	/**
+	 * renvoie la liste des des Copy d'un Movie en fonction de son id
+	 * @param id
+	 * @return une liste de Copy
+	 */
+	@Query("SELECT c FROM Copy c WHERE c.movie.id = :id")
+	List<Copy> findAllByMovieId(@Param("id") int id);
 }

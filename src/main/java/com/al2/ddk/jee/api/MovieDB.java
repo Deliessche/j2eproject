@@ -1,5 +1,6 @@
 package com.al2.ddk.jee.api;
 
+import com.al2.ddk.jee.domain.Movie;
 import com.al2.ddk.jee.service.MovieService;
 import com.al2.ddk.jee.utils.JsonReader;
 import com.google.gson.JsonArray;
@@ -26,13 +27,20 @@ public class MovieDB {
         if (!movie.get("runtime").isJsonNull()) {
             runtime = movie.get("runtime").getAsInt();
         }
-        movieService.createMovie(
-                movie.get("original_title").getAsString(),
-                runtime,
-                Integer.parseInt(movie.get("release_date").getAsString().substring(0,4)),
-                movie.get("overview").getAsString(),
-                movie.get("poster_path").getAsString()
-        );
+        try {
+			Movie newMovie = movieService.createMovie(
+			        movie.get("original_title").getAsString(),
+			        runtime,
+			        Integer.parseInt(movie.get("release_date").getAsString().substring(0,4)),
+			        movie.get("overview").getAsString(),
+			        movie.get("poster_path").getAsString()
+			);
+			movieService.addCopiesOfMovie(newMovie);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 
 
