@@ -70,7 +70,7 @@ public class MovieResource {
 
 	/**
 	 * retourne toute la liste d'exemplaire d'un film
-	 * @param idMovie
+	 * @param id
 	 * @return une liste de copies
 	 */
 	@GetMapping("/movies/{id}/copies")
