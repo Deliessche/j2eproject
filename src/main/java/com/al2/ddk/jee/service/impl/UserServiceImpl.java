@@ -3,6 +3,7 @@ package com.al2.ddk.jee.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.al2.ddk.jee.domain.User;
@@ -16,9 +17,12 @@ public class UserServiceImpl implements UserService {
 	/***/
 	private final UserRepository userRepository;
 	/***/
+	private final PasswordEncoder pwdEncoder;
+	/***/
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository) {
+	public UserServiceImpl(UserRepository userRepository, PasswordEncoder pwdEncoder) {
 		this.userRepository = userRepository;
+		this.pwdEncoder = pwdEncoder;
 	}
 
 	/******/
@@ -49,7 +53,7 @@ public class UserServiceImpl implements UserService {
 			user.setFirstNameU(DTO.getEmailU());
 			user.setLastNameU(DTO.getLastNameU());
 			user.setEmailU(DTO.getEmailU());
-			user.setPasswordU(DTO.getPasswordU());
+			user.setPasswordU(pwdEncoder.encode(DTO.getPasswordU()));
 			userRepository.save(user);
 		}
 	}

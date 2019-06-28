@@ -50,6 +50,7 @@ public class MovieServiceTest {
 		when(movieService.getAllMovies()).thenReturn(movies);
 		// Then
 		assertTrue("lists should be equals", movieService.getAllMovies().equals(movies));
+		// asserThat(varOne).isEqualTo(varTwo);
 	}
 
 	@Test
