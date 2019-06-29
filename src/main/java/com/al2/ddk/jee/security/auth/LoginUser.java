@@ -1,4 +1,4 @@
-package com.al2.ddk.jee.security;
+package com.al2.ddk.jee.security.auth;
 
 public class LoginUser {
 

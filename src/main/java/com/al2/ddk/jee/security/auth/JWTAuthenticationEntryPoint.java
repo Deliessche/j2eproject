@@ -1,4 +1,4 @@
-package com.al2.ddk.jee.security;
+package com.al2.ddk.jee.security.auth;
 
 import java.io.IOException;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.al2.ddk.jee.security;
+package com.al2.ddk.jee.security.auth;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().
+        http.csrf().disable().
                 authorizeRequests()
                 .antMatchers("/token/*").permitAll()
                 .antMatchers("/api/users").permitAll()

@@ -1,4 +1,4 @@
-package com.al2.ddk.jee;
+package com.al2.ddk.jee.security;
 
 import org.springframework.stereotype.Component;
 
