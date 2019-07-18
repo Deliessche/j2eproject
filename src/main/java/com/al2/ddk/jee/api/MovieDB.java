@@ -1,5 +1,8 @@
 package com.al2.ddk.jee.api;
 
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
 import com.al2.ddk.jee.domain.Movie;
 import com.al2.ddk.jee.service.MovieService;
 import com.al2.ddk.jee.utils.JsonReader;
@@ -7,6 +10,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+@Component
 public class MovieDB {
 
     private static MovieService movieService;
@@ -52,5 +56,9 @@ public class MovieDB {
             fillAndAdd(movieToParse.get("id").getAsString());
         }
     }
-
+    
+    @Scheduled(cron = "*/10 * * * * *")
+    public void go() {
+    	insertMoviesByGenre(28);
+    }
 }
