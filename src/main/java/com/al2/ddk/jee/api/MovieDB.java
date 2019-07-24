@@ -60,8 +60,8 @@ public class MovieDB {
     /**
      * Fire at 23:30 PM on the last day of every month
      */
-    @Scheduled(cron = "0 30 23 L * ?")
+    /*@Scheduled(cron = "0 30 23 L * ?")
     public void go() {
     	insertMoviesByGenre(28);
-    }
+    }*/
 }
