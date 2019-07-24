@@ -81,7 +81,7 @@ public class UserResource {
 	 * @return
 	 * @throws NetflischException
 	 */
-	@PostMapping("/users")
+	@PostMapping("/users/register")
 	public ResponseEntity<Object> createUser(@RequestBody UserDTO user) throws NetflischException {
 		/** si le user n'existe déjà on ne fait rien **/
 		if(userService.isEmailExist(user.getEmailU())) {
