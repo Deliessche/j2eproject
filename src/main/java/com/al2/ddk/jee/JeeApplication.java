@@ -34,7 +34,7 @@ public class JeeApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		MovieDB.insertMoviesByGenre(28);
+		//MovieDB.insertMoviesByGenre(28);
 //		/************* Test movieService *************/
 //		/** GET ALL MOVIES **/
 //		List<Movie> allMovies = movieService.getAllMovies();
